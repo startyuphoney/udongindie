@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Inquiry Form</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" th:href="@{/boardForm.css}">
+<style>
+  .grid-cell {
+    width: 100px;
+    height: 100px;
+  }
+</style>
+</head>
+
+<body class="bg-gray-50 font-sans leading-normal tracking-normal">
+<!-- 헤더 -->
+<div th:replace="~{/fragments/header.html :: header_fragment}"></div>
+
+<div id = "boardform_container" class="container mx-auto p-8">
+  <div class="flex flex-wrap justify-center">
+    <div class="w-full lg:w-6/12 px-4">
+      <h2 id = "board_title" class="text-4xl font-semibold text-center text-gray-800 mb-4">1:1 고객 문의</h2>
+      <form id = "paper" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" th:action="@{/member/board}" method="post">
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
+            제목
+          </label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="title" name="title" type="text" placeholder="제목을 입력하세요">
+        </div>
+        <div class="mb-6">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="content">
+            문의내용
+          </label>
+          <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="content" name="content" placeholder="문의하실 내용을 입력하세요"></textarea>
+        </div>
+        <div id ="submit_button_wrapper" class="flex items-center justify-between">
+          <button id = "submit_button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" >
+            제출
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- 푸터 -->
+<div th:replace="~{/fragments/footer.html :: footer_fragment}"></div>
+</body>
+</html>

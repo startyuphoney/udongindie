@@ -1,0 +1,16 @@
+#board_title {
+ margin-top: 150px;
+}
+
+#boardform_container {
+    margin-bottom: 197px;
+}
+
+#paper {
+    margin-top: 70px;
+}
+
+#submit_button_wrapper {
+    display: flex;
+    justify-content: flex-end;
+}

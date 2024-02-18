@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <html xmlns:th="http://www.thymeleaf.org">
+
+</head>
+<body>
+    <!-- fragment -->
+    <footer th:fragment="footer_fragment">
+        <link rel="stylesheet" th:href="@{/footer.css}">
+       <div class="footer_wrapper">
+        <div class="footer_content">
+            <p>© 2023 Udong.Indie Inc. All Rights Reserved.</p>
+        </div>
+       </div>
+    </footer>
+    <!-- fragment end -->
+</body>
+</html>

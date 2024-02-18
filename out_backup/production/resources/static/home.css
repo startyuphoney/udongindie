@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+}
+
+body {
+    width: 100%;
+}
+
+.background_image_area {
+    width: 100%;
+    height: 50vw;
+    background-color: gray;
+    background-image: url( "images/home_main_img3.jpg" );
+    background-size:cover ;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.slogan {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.instagram {
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    font-size: 35px;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.fa-square-instagram {
+    cursor: pointer;
+}
+
+.now_area {
+    width: 100%;
+    height: 300px;
+    background-color: rgb(255, 255, 255);
+}
+
+.now {
+    text-align: center;
+    height: 125px;
+    align-items:center;
+    background-color: rgb(255, 255, 255);
+}
+
+.now p {
+    padding-top: 45px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.contect_area {
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    height: 300px;
+    position: relative;
+}
+
+.contect {
+    display: grid;
+    grid-template-rows: 50px 50px;
+    grid-template-columns: 250px 250px 250px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+}
+
+.item1 {
+    font-weight: bold;
+}
+
+.item3 {
+    font-size: 25px;
+}
+
+.now_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.now_wrapper .now_img {
+    background-color: grey;
+    width: 100px;
+    height: 150px;
+}
+
+.now_wrapper .now_title {
+    margin-left: 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* home.css */
+
+.background_image_area {
+    position: relative;
+    opacity: 0; /* 초기에는 숨겨진 상태로 설정 */
+    transition: opacity 1s ease-in-out; /* 투명도에 대한 전환 효과 설정 */
+}
+
+.background_image_area.show {
+    opacity: 1; /* 투명도를 1로 변경하여 나타나게 함 */
+}

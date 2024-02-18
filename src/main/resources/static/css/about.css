@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+}
+
+.about_wrapper {
+    width: 50%;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+}
+
+.about {
+    padding-top: 50px;
+    font-size: 15px;
+}
+
+.slogan {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.company{
+    font-size: 18px;
+}
+
+.about_wrapper p {
+    margin-top: 8px;
+}
+
+.teams {
+    margin-top: 100px;
+}
+
+.teams p {
+    font-size: 18px;
+}
+
+.team_container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.team {
+    margin-right: 30px;
+    background-color: skyblue;
+    color: white;
+    width: 100%;
+    padding: 15px 15px;
+}
+
+.team .title {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.team .content {
+    font-size: 12px;
+}
+
+.contact_wrapper {
+    width: 100%;
+    background-color: rgb(42, 42, 42);
+    margin-top: 40px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 20px;
+}
+
+.contact_wrapper_wrapper {
+    display: flex;
+    width: 50%;
+    padding-left: 15%;
+}
+
+.contact {
+    color: white;
+    margin: auto;
+}
+
+.contact i {
+    font-size: 30px;
+}
+
+.map {
+    margin-top: 8px;
+}
+
+.fa-square-instagram {
+    cursor: pointer;
+}
+
+
+/* about.css */
+
+.about_wrapper {
+    position: relative;
+    opacity: 0; /* 초기에는 숨겨진 상태로 설정 */
+    transition: opacity 1s ease-in-out; /* 투명도에 대한 전환 효과 설정 */
+}
+
+.about_wrapper.show {
+    opacity: 1; /* 투명도를 1로 변경하여 나타나게 함 */
+}
+
+

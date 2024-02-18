@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/orderform.css}">
+<!--    <link rel="stylesheet" th:href="@{/button.css}">-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <!-- 헤더 -->
+<!--    <div th:replace="~{/fragments/header.html :: header_fragment}"></div>-->
+<!--    헤더-->
+    <link rel="stylesheet" th:href="@{/navbar_orderForm.css}">
+    <nav class="navbar">
+        <div class="navbar_logo">
+            <img src="/images/logo.jpg" width="60" height="50" alt="My Image">
+            <a href="/admin">우리동네인디</a>
+        </div>
+
+        <ul class="navbar_menu">
+            <li class="welcome" th:if="${session.loginMember != null}">
+                <p>Welcome, <span th:text="${session.loginMember.name}"></span>!</p></li>
+            <li class="menu"><a href="/">HOME</a></li>
+            <li class="menu"><a href="/about">ABOUT</a></li>
+            <li class="menu" th:if="${session.loginMember != null}"><a href="/member/mypage">MY</a></li>
+            <li class="menu" th:unless="${session.loginMember != null}">
+                <a href="/login">LOGIN</a></li>
+            <li class="menu"><a href="/order/orderForm">예매</a></li>
+        </ul>
+    </nav>
+<!--    /헤더-->
+
+    <div class="body_wrapper">
+        <div class="order_wrapper">
+            <div class="first_wrapper">
+                <div class="first_wrapper2">
+                    <div class="first">
+                        <div class="img">
+<!--                           <img id="imgId" src="test.jpg" alt="now" height="400" width="350"/>-->
+                             <img id="imgId" th:src="${item.imgPath}" alt="now" height="400" width="350"/>
+                        </div>
+                        <div class="title_content">
+                            <h1 th:text="${item.name}">브로큰발렌타인</h1>
+                            <p class="context" th:text="${item.content}">맛깔나게 알려드립니다 브발의 기타치는 법!</p>
+                            <div class="detail_wrapper">
+                                <div class="detail">
+                                    <div class="item">공연날짜 </div>
+                                    <div class="item">공연장 </div>
+                                    <div class="item">공연시간 </div>
+                                    <div class="item">가격 </div>
+                                    <div class="item">관람등급 </div>
+                                    <div class="item">장르 </div>
+                                </div>
+                                <div class="detail_value">
+                                    <div class="item2" id="beginDate" th:text="${item.beginDate}">기본 메시지</div>
+                                    <div class="item2" th:text="${item.theater}">기본 메시지</div>
+                                    <div class="item2" th:text="${item.runningTime}">기본 메시지</div>
+                                    <div class="item2" th:text="${item.price}">기본 메시지</div>
+                                    <div class="item2" th:text="${item.rating}">기본 메시지</div>
+                                    <div class="item2" th:text="${item.genre}">기본 메시지</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="order_count">
+    <!--            버튼-->
+                <div class="wrapper">
+    <!--            <div role="button" class="retro-btn lg primary" onclick="window.location.href='/order/createOrder'" >-->
+                    <!-- <div role="button" class="retro-btn lg primary" th:onclick="|location.href='@{/order/createOrder(itemIdx=${item.idx})}'|" >
+                        <a class="btn">
+                            <span class="btn-inner">
+                                <span class="content-wrapper">
+                                    <span class="btn-content">
+                                        <span class="btn-content-inner" label="예매">
+                                        </span>
+                                    </span>
+                                </span>
+                            </span>
+                        </a>
+                    </div> -->
+                </div>
+            </div>
+                <!--            /버튼-->
+    <!------------------------------- 디테일 네비게이션  ---------------------------------------------->
+            <div class="detail_nav_wrapper">
+                <div class="item_info">
+                    <div class="nav_sticky_wrapper">
+                        <ul class="detail_nav">
+                            <span class="detail_item_info active">공연정보</span>
+                            <span class="detail_item_sale_info">판매정보</span>
+                        </ul>
+                        <hr class="nav_underline">
+                    </div>
+    <!------------------------------------ 공연정보 ------------------------------------------------->
+                    <div>
+                        <div class="item_detail_info show">
+                            <h2>공연시간 정보</h2>
+                            <p th:text="${item.beginDateInfo}">예매가능시간: 전일17시(월~토 관람 시)까지/전일 11시(일요일 관람 시)까지</p>
+                            <div class="item_detail_text">
+                                <h2>공연상세/출연진정보</h2>
+                            </div>
+                            <div class="item_detail_img">
+<!--                                <img id="imgId" src="/test2.jpg" alt="item_detail"/>-->
+<!--                                <img id="imgId" src="/test2.jpg" alt="item_detail"/>-->
+                                <img id="imgId" th:src="${item.imgPathDetail}" alt="detail"/>
+                            </div>
+                            <!-- 푸터 -->
+                            <div th:replace="~{/fragments/footer.html :: footer_fragment}"></div>
+                        </div>
+                    </div>
+                </div>
+    <!---------------------------------- 판매자 정보 --------------------------------------------------->
+                <div class="item_sale_info">
+                    <div class="company_info_wrapper">
+                        <h2>기획사 정보</h2>
+                        <br>
+                        <div>주최: 우리동네인디</div>
+                        <div>주관: 우리동네인디</div>
+                        <div>문의: udong.indie@gmail.com</div>
+                    </div>
+                    <h2>판매자 정보</h2>
+                    <br>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>상호</th>
+                                <td>우리동네인디</td>
+                                <th>대표자명</th>
+                                <td>윤치호</td>
+                            </tr>
+                            <tr>
+                                <th>사업자등록번호</th>
+                                <td>614-05-69119</td>
+                                <th>E-mail</th>
+                                <td>udong.indie@gmail.com</td>
+                            </tr>
+                            <tr>
+                                <th>연락처</th>
+                                <td colspan="3">010-2399-4790</td>
+                            </tr>
+                            <tr>
+                                <th>주소</th>
+                                <td colspan="3">부산광역시 해운대구 센텀중앙로 142(재송동, 더샵센텀파크2차아파트) 202동 3701호</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- 푸터 -->
+                    <div th:replace="~{/fragments/footer.html :: footer_fragment}"></div>
+                </div>
+            </div>
+            
+
+            
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+    <script>
+        // $('.detail_item_sale_info').click(function() {
+        //   if ( $('.item_detail_info').hasClass('show') ) {
+        //     $('.item_detail_info').removeClass('show')
+        // }
+        // else {
+        //     $('.item_sale_info').addClass('show')
+        // }
+        // });
+
+        // $('.detail_item_info').click(function() {
+        //   if ( $('.item_sale_info').hasClass('show') ) {
+        //     $('.item_sale_info').removeClass('show')
+        // }
+        // else {
+        //     $('.item_detail_info').addClass('show')
+        // }
+        // });
+
+
+        $('.detail_item_info').click(function() {
+            $('.item_sale_info').hasClass('show')
+            $('.item_sale_info').removeClass('show')
+            $('.item_detail_info').addClass('show')
+            $('.detail_item_info').css("color","black");
+            $('.detail_item_info').addClass("active");
+            $('.detail_item_sale_info').removeClass("active");
+            $('.detail_item_sale_info').css("color","rgb(102, 102, 102)");
+
+        });
+
+        $('.detail_item_sale_info').click(function() {
+            $('.item_detail_info').hasClass('show')  
+            $('.item_detail_info').removeClass('show')
+            $('.item_sale_info').addClass('show')
+            $('.detail_item_sale_info').css("color","black");
+            $('.detail_item_sale_info').addClass("active");
+            $('.detail_item_info').removeClass("active");
+            $('.detail_item_info').css("color","rgb(102, 102, 102)");
+
+        });
+        
+    </script>
+    <!----------------------------------------------- 달력   -------------------------------------------------->
+    <div class="calendar_wrapper2">
+        <div class="calendar_wrapper">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+            <link rel="stylesheet" th:href="@{/calendar.css}">
+            <div class="calendar-container">
+                <header class="calendar-header">
+                    <p class="calendar-current-date"></p>
+                    <div class="calendar-navigation">
+                        <!-- <span id="calendar-prev" class="material-symbols-rounded">chevron_left</span> -->
+                        <!-- <span id="calendar-next" class="material-symbols-rounded">chevron_right</span> -->
+                    </div>
+                </header>
+                <div class="calendar-body">
+                    <ul class="calendar-weekdays">
+                        <li>일</li>
+                        <li>월</li>
+                        <li>화</li>
+                        <li>수</li>
+                        <li>목</li>
+                        <li>금</li>
+                        <li>토</li>
+                    </ul>
+                    <ul class="calendar-dates"></ul>
+                    <div class="remaining">
+                        <hr class="remaining_hr">
+                        <div class="remaining_content">
+                            <h4>남은 좌석</h4>
+                            <div th:text="${item.stockQuantity}">잔여좌석 표시</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="calendar_under_button_wrapper" th:onclick="|location.href='@{/order/createOrder(itemIdx=${item.idx})}'|" >
+                <a class="calendar_under_button">예매하기</a>
+                <br>
+            </div>
+            <p>예매 버튼 클릭 시 카카오페이 결제 화면으로 연결됩니다.</p>
+            <style>
+                * {
+                    margin: 0;
+                    padding: 0;
+                    font-family: 'Poppins', sans-serif;
+                }
+
+                body {
+                    display: flex;
+                    background: #ffffff;
+                    min-height: 100vh;
+                    padding: 0 10px;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .calendar-container {
+                    background: #fff;
+                    width: 350px;
+                    border-radius: 10px;
+                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+                }
+
+                .calendar-container header {
+                    display: flex;
+                    align-items: center;
+                    padding: 25px 30px 10px;
+                    justify-content: space-between;
+                }
+
+                header .calendar-navigation {
+                    display: flex;
+                }
+
+                header .calendar-navigation span {
+                    height: 38px;
+                    width: 38px;
+                    margin: 0 1px;
+                    cursor: pointer;
+                    text-align: center;
+                    line-height: 38px;
+                    border-radius: 50%;
+                    user-select: none;
+                    color: #aeabab;
+                    font-size: 1.9rem;
+                }
+
+                .calendar-navigation span:last-child {
+                    margin-right: -10px;
+                }
+
+                header .calendar-navigation span:hover {
+                    background: #f2f2f2;
+                }
+
+                header .calendar-current-date {
+                    font-weight: 500;
+                    font-size: 1.45rem;
+                }
+
+                .calendar-body {
+                    padding: 20px;
+                }
+
+                .calendar-body ul {
+                    list-style: none;
+                    flex-wrap: wrap;
+                    display: flex;
+                    text-align: center;
+                }
+
+                .calendar-body .calendar-dates {
+                    margin-bottom: 20px;
+                }
+
+                .calendar-body li {
+                    width: calc(100% / 7);
+                    font-size: 1.07rem;
+                    color: #414141;
+                }
+
+                .calendar-body .calendar-weekdays li {
+                    cursor: default;
+                    font-weight: 500;
+                }
+
+                .calendar-body .calendar-dates li {
+                    margin-top: 30px;
+                    position: relative;
+                    z-index: 1;
+                    cursor: pointer;
+                }
+
+                .calendar-dates li.inactive {
+                    color: #aaa;
+                }
+
+                .calendar-dates li.active {
+                    color: #fff;
+                }
+
+                .calendar-dates li::before {
+                    position: absolute;
+                    content: "";
+                    z-index: -1;
+                    top: 50%;
+                    left: 50%;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%);
+                }
+
+                .calendar-dates li.active::before {
+                    background: skyblue;
+                }
+
+                .calendar-dates li:not(.active):hover::before {
+                    background: #e4e1e1;
+                }
+            </style>
+            <script>
+
+                // let date=new Date(); // creates a new date object with the current date and time
+                // let year=date.getFullYear(); // gets the current year
+                // let month=date.getMonth(); // gets the current month (index based, 0-11)
+
+                // HTML에서 beginDate 요소를 가져옴
+                var beginDateElement = document.getElementById("beginDate");
+                // beginDate 요소의 텍스트 가져오기
+                var dateStringWithTime = beginDateElement.textContent;
+
+                // 시간 부분을 제외한 날짜 부분만 추출
+                var dateString = dateStringWithTime.split(" ")[0];
+
+                // '-'를 기준으로 문자열을 분할하여 각 부분을 변수에 담음
+                var dateParts = dateString.split("-");
+                var parse_year = dateParts[0];
+                var parse_month = parseInt(dateParts[1]) - 1; // 실제 값보다 1 작은 값으로 변환
+                var parse_day = dateParts[2];
+
+                var int_year = parseInt(parse_year);
+                var int_month = parseInt(parse_month);
+                var int_day = parseInt(parse_day);
+
+                // 결과 문자열 생성
+                var resultString = parse_year + "," + "(" + parse_month + "-" + "1" + ")" + "," + parse_day;
+
+                let date=new Date(int_year,int_month,int_day); // creates a new date object with the current date and time
+                let year=date.getFullYear(); // gets the current year
+                let month=date.getMonth(); // gets the current month (index based, 0-11)
+
+                const day=document.querySelector(".calendar-dates"); // selects the element with class "calendar-dates"
+                const currdate=document.querySelector(".calendar-current-date"); // selects the element with class "calendar-current-date"
+                const prenexIcons=document.querySelectorAll(".calendar-navigation span"); // selects all elements with class "calendar-navigation span"
+
+                const months=[
+                ". 01",
+                ". 02",
+                ". 03",
+                ". 04",
+                ". 05",
+                ". 06",
+                ". 07",
+                ". 08",
+                ". 09",
+                ". 10",
+                ". 11",
+                ". 12"]; // array of month names
+
+                // function to generate the calendar
+                const manipulate=()=> {
+                    // get the first day of the month
+                    let dayone=new Date(year, month, 1).getDay();
+
+                    // get the last date of the month
+                    let lastdate=new Date(year, month + 1, 0).getDate();
+
+                    // get the day of the last date of the month
+                    let dayend=new Date(year, month, lastdate).getDay();
+
+                    // get the last date of the previous month
+                    let monthlastdate=new Date(year, month, 0).getDate();
+
+                    let lit=""; // variable to store the generated calendar HTML
+
+                    // loop to add the last dates of the previous month
+                    for (let i=dayone; i > 0; i--) {
+                lit+=`<li class="inactive">${monthlastdate - i + 1}</li>`;
+                    }
+
+                    // loop to add the dates of the current month
+                    for (let i=1; i <=lastdate; i++) {
+                // check if the current date is today
+                let isToday=i===date.getDate() && month===date.getMonth() && year===date.getFullYear() ? "active": "";
+                lit+=`<li class="${isToday}">${i}</li>`;
+                    }
+
+                    // loop to add the first dates of the next month
+                    for (let i=dayend; i < 6; i++) {
+                lit+=`<li class="inactive">${i - dayend + 1}</li>`
+                    }
+
+                    // update the text of the current date element with the formatted current month and year
+                    currdate.innerText=`${year} ${months[month]}`;
+
+                    // update the HTML of the dates element with the generated calendar
+                    day.innerHTML=lit;
+                }
+
+                manipulate();
+
+                // Attach a click event listener to each icon
+                prenexIcons.forEach(icon=> {
+
+                // When an icon is clicked
+                icon.addEventListener("click", ()=> {
+                        // Check if the icon is "calendar-prev" or "calendar-next"
+                        month=icon.id==="calendar-prev" ? month - 1 : month + 1;
+
+                        // Check if the month is out of range
+                        if (month < 0 || month > 11) {
+                            // Set the date to the first day of the month with the new year
+                            date=new Date(year, month, new Date().getDate());
+                            // Set the year to the new year
+                            year=date.getFullYear();
+                            // Set the month to the new month
+                            month=date.getMonth();
+                        }
+
+                        else {
+                            // Set the date to the current date
+                            date=new Date();
+                        }
+
+                        // Call the manipulate function to update the calendar display
+                        manipulate();
+                    });
+                    });
+
+            <!-----------------------   beginDate 문자열 가공해서 변수에 담는다   ----------------------------->
+<!--                // HTML에서 beginDate 요소를 가져옴-->
+<!--                var beginDateElement = document.getElementById("beginDate");-->
+<!--                // beginDate 요소의 텍스트 가져오기-->
+<!--                var dateString = beginDateElement.textContent;-->
+<!--                -->
+<!--                // 날짜 문자열을 공백, 대시 및 콜론을 기준으로 분할하여 각 부분을 해당 변수에 저장-->
+<!--                var dateParts = dateString.split(/[\s-:]/);-->
+<!--                var parse_year = parseInt(dateParts[0]);-->
+<!--                var parse_month = parseInt(dateParts[1]);-->
+<!--                var parse_day = parseInt(dateParts[2]);-->
+
+            </script>
+        </div>
+    </div>
+
+    <!----------------------------------------------- /달력   -------------------------------------------------->
+
+</body>
+</html>
+

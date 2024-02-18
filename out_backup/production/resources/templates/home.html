@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="home.css">
+    <html xmlns:th="http://www.thymeleaf.org">
+    <script src="https://kit.fontawesome.com/1414d3ff26.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- 헤더 -->
+    <div th:replace="~{/fragments/header.html :: header_fragment}"></div>
+
+    <div class="body_wrapper">
+        <div class="background_image_area">
+            <div class="slogan">
+                <p>"Through Culture, We love people"</p>
+            </div>
+            <div class="instagram">
+                <i class="fa-brands fa-square-instagram"></i>
+            </div>
+        </div>
+        <div class="now_area">
+            <div class="now">
+                <p>NOW AVAILABLE!</p>
+            </div>
+            <div class="now_wrapper">
+                <div th:if="${item != null}" class="now_img">
+                    <img id="imgId" th:src="${item.imgPath}" alt="now" height="150" width="100"/>
+                </div>
+                <div th:if="${item != null}" class="now_title">
+                    <div th:text="${item.name}">기본 메시지</div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="contect_area">
+            <div class="contect">
+                <div class="item1">Call</div>
+                <div class="item1">Email</div>
+                <div class="item1">Follow</div>
+                <div class="item2">010-2399-4790</div>
+                <div class="item2">admin@udongindie.co.kr</div>
+                <div class="item3"><i class="fa-brands fa-square-instagram"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <div th:replace="~{/fragments/footer.html :: footer_fragment}"></div>
+    <script>
+
+        // 페이지 로드 후 실행되는 코드
+       document.addEventListener('DOMContentLoaded', function () {
+        // 클래스가 'fa-square-instagram'인 요소를 찾아 클릭 이벤트를 추가합니다.
+        var elements = document.getElementsByClassName('fa-square-instagram');
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].addEventListener('click', function () {
+                // 특정 링크로 이동하는 코드
+                window.location.href = 'https://www.instagram.com/udong.indie/'; // 원하는 링크로 변경
+            });
+        }
+    });
+    </script>
+
+    <!-- HTML 파일 일부분 -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 페이지 로드 후 실행되는 코드
+            var backgroundArea = document.querySelector('.background_image_area');
+
+            // 페이지가 로드되었을 때 바로 fade-in 효과를 적용하기 위해 클래스 추가
+            backgroundArea.classList.add('show');
+
+        });
+    </script>
+
+
+</body>
+</html>

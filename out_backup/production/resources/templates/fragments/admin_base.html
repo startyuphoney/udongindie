@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우리동네인디 - 관리자</title>
+
+</head>
+<!-- fragment -->
+<admin_base th:fragment="admin_base_fragment">
+    <div class="admin_body_wrapper">
+        <link rel="stylesheet" th:href="@{/admin_base.css}">
+        <div class="header_wrapper">
+            <div class="navbar">
+                <ul>
+                    <li class="title1" onclick="location.href='/'">우리동네인디</li>
+                    <li class="title2">Administration</li>
+                </ul>
+            </div>
+        </div>
+        <div class="body_area">
+            <div class="sidebar_wrapper">
+                <div class="hello">관리자 님, 환영합니다!</div>
+                <hr class="hello_line"  style="border: solid 1px rgb(202, 202, 202); width: 70%; ">
+                <div class="sidebar_menu">
+                    <div class="menu_title menu1">회원 관리</div>
+                    <ul>
+                        <li><a href="/admin">사용자</a></li>
+                        <!--                    <li><a href="/admin/board_manage">관리자</a></li>-->
+                        <li><a href="/admin/board_manage">문의 내역</a></li>
+                    </ul>
+                    <div class="menu_title menu2">콘텐츠 관리</div>
+                    <ul>
+                        <li><a href="/admin/item_manage/add">공연 등록</a></li>
+                        <li><a href="/admin/item_manage">공연 목록</a></li>
+                    </ul>
+                    <div class="menu_title menu3">결제/환불</div>
+                    <ul>
+                        <li>결제 목록</li>
+                    </ul>
+                    <div class="logout_btn">
+                        <a href="/">로그아웃 하기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</admin_base>
+<!-- fragment end -->
+</html>

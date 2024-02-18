@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/myPage.css}">
+<!--    <link rel="stylesheet" th:href="@{/admin_userList.css}">-->
+    <link rel="stylesheet" th:href="@{/bootstrap_only_button.css}">
+    <link rel="stylesheet" th:href="@{/pagination.css}">
+    <html xmlns:th="http://www.thymeleaf.org">
+    <title>우리동네인디 - 관리자</title>
+</head>
+<body>
+<!-- 어드민 베이스 -->
+<div th:replace="~{/fragments/admin_base.html :: admin_base_fragment}"></div>
+
+<div class="body_wrapper">
+    <div class="board_wrapper">
+        <section class="notice">
+            <div class="page-title">
+                <div class="container">
+                    <h3>전체 멤버 ( <span th:text="${memberCount}"></span> )</h3>
+                </div>
+            </div>
+
+            <!-- board list area -->
+            <div id="board-list">
+                <div class="container">
+                    <table class="board-table">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="th-num">번호</th>
+                            <th scope="col" class="th-title">이메일/아이디</th>
+                            <th scope="col" class="th-date">이름</th>
+                            <th scope="col" class="th-date">가입일</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="member : ${paging}">
+                            <td><span th:text="${member.idx}"></span></td>
+                            <!--                            <td><span th:text="${board.createDate}"></span></td>-->
+                            <td><span th:text="${member.username}"></span></td>
+                            <td><span th:text="${member.name}"></span></td>
+                            <td th:text="${#temporals.format(member.joinDate, 'yyyy.MM.dd')}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!-- 페이징처리 시작 -->
+                    <div class="pagination_wrapper">
+                        <div class="pagination_inner" th:if="${!paging.isEmpty()}">
+                            <ul class="pagination justify-content-center pagination_body">
+                                <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+                                    <a class="page-link"
+                                       th:href="@{|?page=${paging.number-1}|}">
+                                        <span>이전</span>
+                                    </a>
+                                </li>
+                                <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+                                    th:classappend="${page == paging.number} ? 'active'"
+                                    class="page-item">
+                                    <a th:text="${page}+1" class="page-link" th:href="@{|?page=${page}|}"></a>
+                                </li>
+                                <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+                                    <a class="page-link" th:href="@{|?page=${paging.number+1}|}">
+                                        <span>다음</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- 페이징처리 끝 -->
+                </div>
+            </div>
+
+        </section>
+    </div>
+</div>
+</body>
+</html>
+

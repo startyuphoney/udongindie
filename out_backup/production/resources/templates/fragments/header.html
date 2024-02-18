@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/1414d3ff26.js" crossorigin="anonymous"></script>
+    <html xmlns:th="http://www.thymeleaf.org">
+
+</head>
+<body>
+
+    <!-- fragment -->
+    <admin_header th:fragment="header_fragment">
+        <link rel="stylesheet" th:href="@{/navbar.css}">
+        <nav class="navbar">
+            <div class="navbar_logo">
+                <img src="/images/logo.jpg" width="60" height="50" alt="My Image">
+                <a href="/admin">우리동네인디</a>
+            </div>
+
+            <ul class="navbar_menu">
+                <li class="welcome" th:if="${session.loginMember != null}">
+                    <p>Welcome, <span th:text="${session.loginMember.name}"></span>!</p></li>
+                <li class="menu"><a href="/">HOME</a></li>
+                <li class="menu"><a href="/about">ABOUT</a></li>
+                <li class="menu" th:if="${session.loginMember != null}"><a href="/member/mypage">MY</a></li>
+                <li class="menu" th:unless="${session.loginMember != null}">
+                    <a href="/login">LOGIN</a></li>
+                <li class="menu"><a href="/order/orderForm">예매</a></li>
+            </ul>
+        </nav>
+    </admin_header>
+    <!-- fragment end -->
+</body>
+</html>

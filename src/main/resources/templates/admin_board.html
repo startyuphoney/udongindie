@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/myPage.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap_only_button.css}">
+    <link rel="stylesheet" th:href="@{/pagination.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <title>우리동네인디 - 관리자</title>
+</head>
+<body>
+<!-- 어드민 베이스 -->
+<div th:replace="~{/fragments/admin_base.html :: admin_base_fragment}"></div>
+
+<div class="body_wrapper">
+    <div class="board_wrapper">
+        <section class="notice">
+            <div class="page-title">
+                <div class="container">
+                    <h3>문의 내역</h3>
+                </div>
+            </div>
+
+            <!-- board list area -->
+            <div id="board-list">
+                <div class="container">
+                    <table class="board-table">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="th-num">번호</th>
+                            <th scope="col" class="th-title">제목</th>
+                            <th scope="col" class="th-date">등록일</th>
+                            <th scope="col" class="th-date">
+                                상태 :
+                                <select onchange="if(this.value) location.href='/admin/board_manage/option?status='+(this.value);">
+                                    <option value="ALL">ALL</option>
+                                    <option value="FINISH">답변 완료</option>
+                                    <option value="WAIT">답변 대기</option>
+                                </select>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1001</td>
+                            <th>
+                                <a href="#!">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
+                                <p>테스트</p>
+                            </th>
+                            <td>2017.07.13</td>
+                            <td>공지</td>
+                        </tr>
+                        <tr>
+                            <td>1002</td>
+                            <th><a href="#!">공지사항 안내입니다. 이용해주셔서 감사합니다</a></th>
+                            <td>2017.06.15</td>
+                            <td>공지</td>
+                        </tr>
+                        <tr th:each="board : ${paging}">
+                            <td><span th:text="${board.idx}"></span></td>
+                            <td><a th:href="@{/admin/board_manage/detail(idx=${board.idx})}"><span th:text="${board.title}"></span></a></td>
+                            <!--                            <td><span th:text="${board.createDate}"></span></td>-->
+                            <td th:text="${#temporals.format(board.createDate, 'yyyy.MM.dd')}"></td>
+                            <td><span th:text="${board.status}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!-- 페이징처리 시작 -->
+                    <div class="pagination_wrapper">
+                        <div class="pagination_inner" th:if="${!paging.isEmpty()}">
+                            <ul class="pagination pagination_body">
+                                <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+                                    <a class="page-link"
+                                       th:href="@{|?page=${paging.number-1}|}">
+                                        <span>이전</span>
+                                    </a>
+                                </li>
+                                <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+                                    th:classappend="${page == paging.number} ? 'active'"
+                                    class="page-item">
+                                    <a th:text="${page}+1" class="page-link" th:href="@{|?page=${page}|}"></a>
+                                </li>
+                                <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+                                    <a class="page-link" th:href="@{|?page=${paging.number+1}|}">
+                                        <span>다음</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- 페이징처리 끝 -->
+                </div>
+            </div>
+            <div id="status" hidden="hidden" th:text="${status}"></div>
+        </section>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+    // 서버에서 설정한 status 값을 가져옵니다.
+    var status = $('#status').text(); // 혹은 $('#status').val(); 사용 가능합니다.
+
+    // status 값이 "ORDER"인 경우에만 해당하는 option 요소에 selected 속성을 추가합니다.
+    if (status === 'FINISH') {
+        $('option[value="FINISH"]').prop('selected', true);
+    }
+
+    if (status === 'WAIT') {
+        $('option[value="WAIT"]').prop('selected', true);
+    }
+    });
+
+</script>
+</body>
+</html>
+

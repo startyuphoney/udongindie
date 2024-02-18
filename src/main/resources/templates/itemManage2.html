@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/myPage.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap_only_button.css}">
+    <html xmlns:th="http://www.thymeleaf.org">
+    <title>우리동네인디 - 관리자</title>
+</head>
+<body>
+<!-- 어드민 베이스 -->
+<div th:replace="~{/fragments/admin_base.html :: admin_base_fragment}"></div>
+
+
+<div class="body_wrapper">
+    <div class="board_wrapper">
+        <section class="notice">
+            <div class="page-title">
+                <div class="container">
+                    <h3>공연 목록</h3>
+                </div>
+            </div>
+
+            <!-- board list area -->
+            <div id="board-list">
+                <div class="container">
+                    <table class="board-table">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="th-num">번호</th>
+                            <th scope="col" class="th-title">제목</th>
+                            <th scope="col" class="th-date">등록일</th>
+                            <th scope="col" class="th-date">남은 수량</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1001</td>
+                            <th>
+                                <span>
+                                    <a href="#!">윤도현 밴드 - YB</a>
+                                </span>
+                            </th>
+                            <td>2017.07.13</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>1002</td>
+                            <th>
+                                <span>
+                                    <a href="#!">데이브레이크</a>
+                                </span>
+                            <td>2017.06.15</td>
+                            <td>0</td>
+                        </tr>
+                        <tr th:each="item : ${items}">
+                            <td><span th:text="${item.idx}"></span></td>
+                            <td><a th:href="@{/admin/item_manage/modify(idx=${item.idx})}"><span th:text="${item.name}"></span></a></td>
+                            <!--                            <td><span th:text="${board.createDate}"></span></td>-->
+                            <td th:text="${#temporals.format(item.createDate, 'yyyy.MM.dd')}"></td>
+                            <td><span th:text="${item.stockQuantity}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!--<link rel="stylesheet" th:href="@{navbar.css}">-->
+    <style>
+        .grid-cell {
+          width: 100px;
+          height: 100px;
+        }
+    </style>
+</head>
+<!-- 어드민 베이스 -->
+<div th:replace="~{/fragments/admin_base.html :: admin_base_fragment}"></div>
+
+
+<body class="bg-gray-50 font-sans">
+<div class="container mx-auto p-4">
+    <form th:object="${history}" method="post" enctype="multipart/form-data" >
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">타이틀 입력하세요</label>
+            <input type="text" th:field="*{title}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Title">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">포스터</label>
+            <div id="preview" class="border rounded w-full h-24 mb-3"></div>
+            <div class="col-12">
+                <label class="form-label">상품 이미지 업로드</label>
+                <input type="file" class="form-control" id="imgFile" name="imgFile">
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 mb-4">
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2">공연연도</label>
+                <select th:field="*{performYear}">
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div th:if="${history.idx == null}" class="flex items-center justify-between">
+            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" id="saveHistory">등록</button>
+        </div>
+        <span th:if="${history.idx != null}" >
+      <button id="modify_btn" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">수정 완료</button>
+    </span>
+        <span th:if="${history.idx != null}" >
+      <button class="bg-red-400 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="location.href='/admin/item_manage'">취소</button>
+    </span>
+    </form>
+</div>
+
+<script>
+    $('#modify_btn').click(function() {
+            alert('권한이 없습니다.')
+      });
+
+     $('#saveHistory').click(function() {
+            alert('저장되었습니다.')
+      });
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/orderform.css}">
+    <link rel="stylesheet" th:href="@{/button.css}">
+</head>
+<body>
+    <!-- 헤더 -->
+    <div th:replace="~{/fragments/header.html :: header_fragment}"></div>
+    <div class="body_wrapper">
+        <div class="order_wrapper">
+            <div class="first">
+                <div class="img">
+    <!--                <img id="imgId" src="files/test.jpg" alt="now" height="400" width="350"/>-->
+                    <img id="imgId" th:src="${item.imgPath}" alt="now" height="400" width="350"/>
+                </div>
+                <div class="title_content">
+                    <h1 th:text="${item.name}">브로큰발렌다인의 기타 치는 법</h1>
+                    <p class="context" th:text="${item.content}">맛깔나게 알려드립니다 브발의 기타치는 법!</p>
+                    <div class="detail_wrapper">
+                        <div class="detail">
+                            <div class="item">공연날짜 </div>
+                            <div class="item">공연장 </div>
+                            <div class="item">공연시간 </div>
+                            <div class="item">가격 </div>
+                            <div class="item">관람등급 </div>
+                            <div class="item">장르 </div>
+                        </div>
+                        <div class="detail_value">
+                            <div class="item2" th:text="${item.beginDate}">기본 메시지</div>
+                            <div class="item2" th:text="${item.theater}">기본 메시지</div>
+                            <div class="item2" th:text="${item.runningTime}">기본 메시지</div>
+                            <div class="item2" th:text="${item.price}">기본 메시지</div>
+                            <div class="item2" th:text="${item.rating}">기본 메시지</div>
+                            <div class="item2" th:text="${item.genre}">기본 메시지</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="order_count">
+    <!--            버튼-->
+                                <div class="wrapper">
+<!--                                    <div role="button" class="retro-btn lg primary" onclick="window.location.href='/order/createOrder'" >-->
+                                    <div role="button" class="retro-btn lg primary" th:onclick="|location.href='@{/order/createOrder(itemIdx=${item.idx})}'|" >
+
+                                        <a class="btn">
+                          <span class="btn-inner">
+                            <span class="content-wrapper">
+                              <span class="btn-content">
+                                <span class="btn-content-inner" label="예매">
+                                </span>
+                              </span>
+                            </span>
+                          </span>
+                                        </a>
+                                    </div>
+                                </div>
+    <!--            /버튼-->
+            </div>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <div th:replace="~{/fragments/footer.html :: footer_fragment}"></div>
+</body>
+</html>

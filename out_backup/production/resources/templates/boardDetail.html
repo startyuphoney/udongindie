@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/basic">
+    <link rel="stylesheet" th:href="@{/boardDetail_button.css}">
+    <link rel="stylesheet" th:href="@{/boardDetail_common.css}">
+    <link rel="stylesheet" th:href="@{/boardDetail_content.css}">
+    <link rel="stylesheet" th:href="@{/boardDetail_default.css}">
+
+
+    <th:block layout:fragment="title">
+        <title>상세 페이지</title>
+    </th:block>
+
+    <th:block layout:fragment="content">
+
+    <div class="content_wrapper2">
+        <div class="page_tits">
+            <!-- 헤더 -->
+            <div th:replace="~{/fragments/header.html :: header_fragment}"></div>
+            <h3>1:1 문의</h3>
+        </div>
+    
+        <div class="content">
+            <section>
+                <table class="tb tb_row">
+                    <colgroup>
+                        <col style="width:10%;" /><col style="width:23%;" /><col style="width:10%;" /><col style="width:23%;" />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th scope="row">글 유형</th>
+                            <td>1:1 문의</td>
+    
+                            <th scope="row">등록일</th>
+                            <td th:text="${#temporals.format( board.createDate, 'yyyy-MM-dd HH:mm' )}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">제목</th>
+                            <td th:text="${board.title}"></td>
+    
+                            <th scope="row">상태</th>
+                            <td th:text="${board.status}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">이름</th>
+                            <td th:text="${board.member.name}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">내용</th>
+                            <td th:text="${board.content}"></td>
+                        </tr>
+                        <span th:if="${board.answer != null}" >
+                            <tr th:each="answer : ${board.answer}">
+                            <th scope="row">답변</th>
+                            <td th:text="${answer.content}"></td>
+                            </tr>
+                        </span>
+
+<!--                        <tr th:if="${board.answer != null}" >-->
+<!--                            <th scope="row">답변</th>-->
+<!--                            <td th:text="${answer.content}"></td>-->
+<!--                        </tr>-->
+                    </tbody>
+                </table>
+                <p class="btn_set">
+                    <a th:href="@{/member/mypage}" class="btns btn_bdr3 btn_mid">뒤로</a>
+                </p>
+            </section>
+        </div> <!--/* .content */-->
+    </div>
+        
+    <!-- 푸터 -->
+    <div th:replace="~{/fragments/footer.html :: footer_fragment}"></div>
+    </th:block>
+</html>

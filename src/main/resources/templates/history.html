@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/history.css}">
+    <html xmlns:th="http://www.thymeleaf.org">
+</head>
+<body>
+
+<!-- 헤더 시작 -->
+<div th:replace="~{/fragments/header.html :: header_fragment}"></div>
+<!-- 헤더 끝 -->
+
+<div th:if="${histories != null}" class="history_body_wrapper">
+    <h2>HISTORY</h2>
+
+    <h1 class="history_year">2024</h1>
+    <div class="content_wrapper">
+        <div th:each="history : ${histories}" class="loop">
+            <div th:if="${history.performYear.toString().equals('2024')}" class="content">
+                <img th:src="${history.imgPath}" width="300" height="350" alt="">
+                <div th:text="${history.title}" class="detail">브로큰발렌타인</div>
+            </div>
+        </div>
+    </div>
+
+
+    <h1 class="history_year">2023</h1>
+    <div class="content_wrapper">
+        <div th:each="history : ${histories}" class="loop">
+            <div th:if="${history.performYear.toString().equals('2023')}" class="content">
+                <img th:src="${history.imgPath}" width="300" height="350" alt="">
+                <div th:text="${history.title}" class="detail">브로큰발렌타인</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- HTML 파일 일부분 -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // 페이지 로드 후 실행되는 코드
+        var backgroundArea = document.querySelector('.history_body_wrapper');
+
+        // 페이지가 로드되었을 때 바로 fade-in 효과를 적용하기 위해 클래스 추가
+        backgroundArea.classList.add('show');
+
+    });
+</script>
+<!-- 푸터 -->
+<div th:replace="~{/fragments/footer.html :: footer_fragment}"></div>
+
+</body>
+
+</html>

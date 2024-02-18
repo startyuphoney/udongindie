@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Registration Form</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<!--<link rel="stylesheet" th:href="@{navbar.css}">-->
+<style>
+  .grid-cell {
+    width: 100px;
+    height: 100px;
+  }
+</style>
+</head>
+<!-- 어드민 베이스 -->
+<div th:replace="~{/fragments/admin_base.html :: admin_base_fragment}"></div>
+
+
+<body class="bg-gray-50 font-sans">
+<div class="container mx-auto p-4">
+  <form th:object="${item}" method="post" enctype="multipart/form-data" >
+    <div class="mb-4">
+      <label for="name" class="block text-gray-700 text-sm font-bold mb-2">타이틀 입력하세요</label>
+      <input type="text" th:field="*{name}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Title">
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2">포스터</label>
+      <div id="preview" class="border rounded w-full h-24 mb-3"></div>
+      <div class="col-12">
+        <label class="form-label">상품 이미지 업로드</label>
+        <input type="file" class="form-control" id="imgFile" name="imgFile">
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2">공연상세/출연진정보 이미지</label>
+      <div id="preview" class="border rounded w-full h-24 mb-3"></div>
+      <div class="col-12">
+        <label class="form-label">공연상세/출연진정보 ( 가로 사이즈 750, 세로는 제한 없음) </label>
+        <input type="file" class="form-control" id="imgFile2" name="imgFile2">
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="content" class="block text-gray-700 text-sm font-bold mb-2">내용 입력하세요</label>
+      <textarea th:field="*{content}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Content"></textarea>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <div>
+        <label for="theater" class="block text-gray-700 text-sm font-bold mb-2">공연장</label>
+        <input type="text" th:field="*{theater}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Theater">
+      </div>
+      <div>
+        <label for="beginDate" class="block text-gray-700 text-sm font-bold mb-2">공연날짜</label>
+        <input type="date" th:field="*{beginDate}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      </div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-4 mb-4">
+      <div>
+        <label for="rating" class="block text-gray-700 text-sm font-bold mb-2">관람등급</label>
+<!--        <input type="text" th:field="*{rating}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Rating">-->
+        <select th:field="*{rating}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Rating">
+          <option value="전체관람가">전체관람가</option>
+          <option value="청소년관람불가">청소년관람불가</option>
+        </select>
+      </div>
+      <div>
+        <label for="beginTime" class="block text-gray-700 text-sm font-bold mb-2">시작시간</label>
+        <input type="time" name = "beginTime" id = "beginTime" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      </div>
+      <div>
+        <label for="price" class="block text-gray-700 text-sm font-bold mb-2">금액</label>
+        <input type="number" th:field="*{price}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Price">
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <div>
+        <label for="genre" class="block text-gray-700 text-sm font-bold mb-2">장르</label>
+        <input type="text" th:field="*{genre}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Genre">
+      </div>
+      <div>
+        <label for="runningTime" class="block text-gray-700 text-sm font-bold mb-2">러닝타임</label>
+        <input type="text" th:field="*{runningTime}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Running Time">
+      </div>
+      <div>
+        <label for="stockQuantity" class="block text-gray-700 text-sm font-bold mb-2">표 수량</label>
+        <input type="text" th:field="*{stockQuantity}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Running Time">
+      </div>
+      <div>
+        <label for="stockQuantity" class="block text-gray-700 text-sm font-bold mb-2">공연시간 정보</label>
+        <input type="text" th:field="*{beginDateInfo}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Content">
+      </div>
+
+    </div>
+
+    <div th:if="${item.idx == null}" class="flex items-center justify-between">
+      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">등록</button>
+    </div>
+    <span th:if="${item.idx != null}" >
+      <button id="modify_btn" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">수정 완료</button>
+    </span>
+    <span th:if="${item.idx != null}" >
+      <button class="bg-red-400 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="location.href='/admin/item_manage'">취소</button>
+    </span>
+  </form>
+</div>
+
+<script>
+  $('#modify_btn').click(function() {
+          alert('권한이 없습니다.')
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/basic">
+<link rel="stylesheet" th:href="@{/boardDetail_button.css}">
+<link rel="stylesheet" th:href="@{/boardDetail_common.css}">
+<link rel="stylesheet" th:href="@{/boardDetail_content.css}">
+<link rel="stylesheet" th:href="@{/boardDetail_default.css}">
+<link rel="stylesheet" th:href="@{/admin_boardDetail.css}">
+
+
+<th:block layout:fragment="title">
+    <title>상세 페이지</title>
+</th:block>
+
+<th:block layout:fragment="content">
+    <!-- 어드민 베이스 -->
+    <div th:replace="~{/fragments/admin_base.html :: admin_base_fragment}"></div>
+
+    <div class="content_wrapper2">
+        <div class="page_tits">
+            <h3>1:1 문의</h3>
+        </div>
+
+        <div class="content">
+            <section>
+                <form method="post" name="submit" th:action="@{/admin/board_manage/answer/{idx} (idx=${board.idx})}">
+                    <table class="tb tb_row">
+                        <colgroup>
+                            <col style="width:10%;" /><col style="width:23%;" /><col style="width:10%;" /><col style="width:23%;" />
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th scope="row">글 유형</th>
+                                <td>1:1 문의</td>
+
+                                <th scope="row">등록일</th>
+                                <td th:text="${#temporals.format( board.createDate, 'yyyy-MM-dd HH:mm' )}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">제목</th>
+                                <td th:text="${board.title}"></td>
+
+                                <th scope="row">상태</th>
+                                <td th:text="${board.status}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">이름</th>
+                                <td th:text="${board.member.name}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">내용</th>
+                                <td th:text="${board.content}"></td>
+                            </tr>
+                            <span th:if="${board.answer != null}" >
+                            <tr th:each="answer : ${board.answer}">
+                            <th scope="row">답변</th>
+                            <td th:text="${answer.content}"></td>
+                            </tr>
+                            </span>
+                            <tr>
+                                <th scope="row">답변</th>
+                                <td><input type="text" name="answerContent" size="20" style="width:100%; border: 0;"></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </form>
+                <p class="btn_set">
+                    <a th:href="@{/admin/board_manage}" class="btns btn_bdr3 btn_mid">뒤로</a>
+                    <a class="btns btn_bdr3 btn_mid" onclick="document.forms['submit'].submit();">작성</a>
+                </p>
+            </section>
+        </div> <!--/* .content */-->
+    </div>
+</th:block>
+</html>

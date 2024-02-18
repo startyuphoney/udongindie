@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="about.css">
+    <script src="https://kit.fontawesome.com/1414d3ff26.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- 헤더 시작 -->
+<div th:replace="~{/fragments/header.html :: header_fragment}"></div>
+<!-- 헤더 끝 -->
+
+    <div class="about_wrapper">
+        <div class="about">
+            <p>ABOUT</p>
+            <br>
+            <p class="slogan">"Through Culture, We love people"</p>
+            <p class="company">문화를 통해 사람을 사랑하는 기업 우리동네인디</p>
+            <br>
+            <p>(주)우리동네인디는 건강한 가치관과 창조적 장인 정신에 입각하여</p>
+            <p>행복한 회사 공동체를 운영하는 것이 기본 방침입니다.</p>
+            <p>기쁘고 행복한 회사 공동체가 클라이언트와 고객들에게 사랑받을 수 있다고 믿고 있으며</p>
+            <p>회사 공동체는 공동의 꿈을 실현하기 위한 '꿈의 발전소'가 되어야 한다고 믿고 있습니다.</p>
+            <p>그래야 회사도 직원 개개인도 참된 가치를 실현할 수 있다고 생각하고 있기 때문입니다.</p>
+        </div>
+        <div class="teams">
+            <p>TEAM UDONGINDIE</p>
+            <div class="team_container">
+                <div class="team">
+                    <p class="title">공연기획팀</p>
+                    <br>
+                    <p class="content">콘서트, 뮤지컬, 페스티벌 등 각종 공연 기획 스폰서십 대행</p>
+                    <p class="content">공연장 네이밍 스폰 대행 총괄 운영 및 관리문화 마케팅 관련 사업 기획</p>
+                </div>
+                <div class="team">
+                    <p class="title">제작/연출팀</p>
+                    <br>
+                    <p class="content">공연 제작 및 연출 현장 운영 및 관리 ​이벤트 제작 대행</p>
+                </div>
+                <div class="team">
+                    <p class="title">콘텐츠팀</p>
+                    <br>
+                    <p class="content">공연 홍보 및 마케팅 콘텐츠 기획 및 제작 SNS 채널 관리 ​외부 협업 기획 및 전략 수립</p>
+                </div>
+                <div class="team">
+                    <p class="title">경영지원팀</p>
+                    <br>
+                    <p class="content">인사, 노무, 회계, 급여 관리, 경영지원 및 IR</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact_wrapper">
+        <div class="contact_wrapper_wrapper">
+            <div class="contact">
+                <p>CONTACT</p>
+                <br>
+                <p>부산시 해운대구 센텀중앙로,</p>
+                <p>145 (우)48050</p>
+                <br>
+                <p>admin@udongindie.co.kr</p>
+                <br>
+                <p><i class="fa-brands fa-square-instagram"></i></p>
+            </div>
+            <div class="map" id="map" style="width: 350px; height: 200px;"></div>
+            <script type="text/javascript">
+                var container = document.getElementById('map'); // 지도를 담을 영역의 DOM 레퍼런스
+                var options = {
+                    center: new kakao.maps.LatLng(35.1787768, 129.1238602),
+
+                    level: 3
+                };
+
+                var map = new kakao.maps.Map(container, options);
+
+
+            </script>
+        </div>
+    </div>
+
+    <script>
+
+        // 페이지 로드 후 실행되는 코드
+       document.addEventListener('DOMContentLoaded', function () {
+        // 클래스가 'fa-square-instagram'인 요소를 찾아 클릭 이벤트를 추가합니다.
+        var elements = document.getElementsByClassName('fa-square-instagram');
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].addEventListener('click', function () {
+                // 특정 링크로 이동하는 코드
+                window.location.href = 'https://www.instagram.com/udong.indie/'; // 원하는 링크로 변경
+            });
+        }
+    });
+    </script>
+
+    <!-- HTML 파일 일부분 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 페이지 로드 후 실행되는 코드
+            var backgroundArea = document.querySelector('.about_wrapper');
+
+            // 페이지가 로드되었을 때 바로 fade-in 효과를 적용하기 위해 클래스 추가
+            backgroundArea.classList.add('show');
+
+        });
+    </script>
+
+
+    <!-- 푸터 -->
+    <div th:replace="~{/fragments/footer.html :: footer_fragment}"></div>
+
+
+</body>
+</html>

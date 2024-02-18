@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <html xmlns:th="http://www.thymeleaf.org"></html>
+</head>
+<body>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe Prototype</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  /* Additional styles if needed */
+</style>
+</head>
+<body class="bg-gray-50">
+
+<!-- 헤더 시작 -->
+<div th:replace="~{/fragments/header.html :: header_fragment}"></div>
+<!-- 헤더 끝 -->
+
+<div class="flex flex-col items-center justify-center h-screen gap-4">
+<!--    <button class="bg-white border border-gray-300 shadow-md text-gray-700 font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline" type="button" onclick="window.location.href='/admin/customer_manage'">-->
+<!--        고객 관리-->
+<!--    </button>-->
+    
+    <button class="bg-white border border-gray-300 shadow-md text-gray-700 font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline" type="button" onclick="window.location.href='/admin/item_manage'">
+        공연 등록/수정/삭제
+    </button>
+    
+<!--    <button class="bg-white border border-gray-300 shadow-md text-gray-700 font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline" type="button" onclick="window.location.href='/admin/pay_manage'">-->
+<!--        결제 관리-->
+<!--    </button>-->
+    
+    <button class="bg-white border border-gray-300 shadow-md text-gray-700 font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline" type="button" onclick="window.location.href='/admin/board_manage'">
+        문의 관리
+    </button>
+</div>
+</body>
+</html>
+       <!-- 푸터 -->
+       <div th:replace="~{/fragments/footer.html :: footer_fragment}"></div>
+</body>
+</html>

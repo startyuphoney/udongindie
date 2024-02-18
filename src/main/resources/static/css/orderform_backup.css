@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+}
+
+.body_wrapper {
+    background-color: white;
+}
+
+
+.first {
+    padding-top: 100px;
+    padding-bottom: 42px;
+    display: flex;
+    justify-content: center;
+}
+
+.first h1 {
+    margin-top: 0px;
+}
+
+.first .title_content {
+    margin-left: 40px;
+}
+
+.first .title_content .context {
+    font-size: 18px;
+    margin-top: 30px;
+}
+
+.first .title_content .detail {
+}
+
+.first .item {
+    margin-top: 20px;
+}
+
+.first .item2 {
+    margin-top: 20px;
+}
+
+.detail_value{
+    margin-left: 30px;
+}
+
+.detail_wrapper {
+    margin-top: 36px;
+    display: flex;
+    margin-left: 5px;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    width: 72%;
+    margin-left: 26%;
+    margin-top: 20px;
+    flex-direction: column;
+}
+
+#pay {
+    margin-top: 18px;
+    margin-left: 547px;
+    margin-bottom: 150px;
+}
+
+.order_count {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding-bottom: 160px;
+}
+

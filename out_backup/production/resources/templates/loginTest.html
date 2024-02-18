@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- head 내용 생략 -->
+</head>
+
+<body>
+<div th:if="${session.loginMember != null}">
+    <p>Welcome, <span th:text="${session.loginMember.username}"></span>!</p>
+    <!-- 세션에 값이 있는 경우에 보여줄 내용 -->
+</div>
+
+<div th:unless="${session.loginMember != null}">
+    <p>Please <a th:href="@{/login}">login</a> 세션에 값이 없는 경우에 보여줄 내용.</p>
+    <!-- 세션에 값이 없는 경우에 보여줄 내용 -->
+</div>
+
+<!-- 본문 내용 생략 -->
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/myPage.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap_only_button.css}">
+    <html xmlns:th="http://www.thymeleaf.org">
+    <title>Document</title>
+</head>
+<body>
+<!-- 헤더 -->
+<div th:replace="~{/fragments/header.html :: header_fragment}"></div>
+
+
+<div class="body_wrapper">
+    <div class="board_wrapper">
+        <section class="notice">
+            <div class="page-title">
+                <div class="container">
+                    <h3>문의 내역</h3>
+                </div>
+            </div>
+
+            <!-- board list area -->
+            <div id="board-list">
+                <div class="container">
+                    <table class="board-table">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="th-num">번호</th>
+                            <th scope="col" class="th-title">제목</th>
+                            <th scope="col" class="th-date">등록일</th>
+                            <th scope="col" class="th-date">상태</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1001</td>
+                            <th>
+                                <a href="#!">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
+                                <p>테스트</p>
+                            </th>
+                            <td>2017.07.13</td>
+                            <td>공지</td>
+                        </tr>
+                        <tr>
+                            <td>1002</td>
+                            <th><a href="#!">공지사항 안내입니다. 이용해주셔서 감사합니다</a></th>
+                            <td>2017.06.15</td>
+                            <td>공지</td>
+                        </tr>
+                        <tr th:each="board : ${boards}">
+                            <td><span th:text="${board.idx}"></span></td>
+                            <td><a th:href="@{/member/board/detail(idx=${board.idx})}"><span th:text="${board.title}"></span></a></td>
+<!--                            <td><span th:text="${board.createDate}"></span></td>-->
+                            <td th:text="${#temporals.format(board.createDate, 'yyyy.MM.dd')}"></td>
+                            <td><span th:text="${board.status}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-primary" onclick = "location.href = '/member/board'" id = "button1">문의</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="pay_wrapper">
+        <section class="notice">
+            <div class="page-title">
+                <div class="container">
+                    <h3>결제내역</h3>
+                </div>
+            </div>
+
+            <!-- board list area -->
+            <div id="board-list">
+                <div class="container">
+                    <table class="board-table">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="th-num">주문번호</th>
+                            <th scope="col" class="th-title">회원명</th>
+                            <th scope="col" class="th-date">공연명</th>
+                            <th scope="col" class="th-date">주문수량</th>
+                            <th scope="col" class="th-date">상태</th>
+                            <th scope="col" class="th-date">일시</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="order : ${orders}">
+                            <td><span th:text="${order.idx}"></span></td>
+                            <td><span th:text="${order.member.name}"></span></td>
+                            <td><span th:text="${order.item.name}"></span></td>
+                            <td><span th:text="${order.count}"></span></td>
+                            <td><span th:text="${order.orderStatus}"></span></td>
+                            <td th:text="${#temporals.format(order.orderDate, 'yyyy.MM.dd')}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- 푸터 -->
+<div th:replace="~{/fragments/footer.html :: footer_fragment}"></div>
+</body>
+</html>
+

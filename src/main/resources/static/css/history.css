@@ -1,0 +1,45 @@
+body{
+    margin:0;
+}
+
+.history_body_wrapper {
+    width: 1300px;
+    margin: auto;
+}
+
+.history_body_wrapper h2 {
+    padding-top : 32px;
+    padding-bottom : 10px;
+}
+
+.content_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.content_wrapper .content {
+    margin-right: 25px;
+    margin-bottom: 30px;
+}
+
+.content .detail {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.history_year {
+    color: rgb(56, 184, 234);
+}
+
+/*  fade in   */
+
+.history_body_wrapper {
+    position: relative;
+    opacity: 0; /* 초기에는 숨겨진 상태로 설정 */
+    transition: opacity 1s ease-in-out; /* 투명도에 대한 전환 효과 설정 */
+}
+
+.history_body_wrapper.show {
+    opacity: 1; /* 투명도를 1로 변경하여 나타나게 함 */
+}

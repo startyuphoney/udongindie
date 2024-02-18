@@ -1,0 +1,183 @@
+<link rel="stylesheet" th:href="@{/inpa_login_form.css}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<div id="container" class="container">
+    <!-- FORM SECTION -->
+    <div class="row">
+      <!-- SIGN UP -->
+      <div class="col align-items-center flex-col sign-up">
+        <div class="form-wrapper align-items-center">
+          <div class="form sign-up">
+            <div class="input-group">
+              <i class='bx bxs-user'></i>
+              <input type="text" id="join_email" placeholder="이메일">
+            </div>
+            <div class="input-group">
+              <i class='bx bx-mail-send'></i>
+              <input type="email" id="join_username" placeholder="이름">
+            </div>
+            <div class="input-group">
+              <i class='bx bxs-lock-alt'></i>
+              <input type="password" id="join_pwd1" placeholder="비밀번호">
+            </div>
+            <div class="input-group">
+              <i class='bx bxs-lock-alt'></i>
+              <input type="password" id="join_pwd2" placeholder="비밀번호 확인">
+            </div>
+            <button id="join_btn_ajax">
+              회원가입
+            </button>
+            <p>
+              <span>
+                이미 계정이 있으신가요?
+              </span>
+              <b onclick="toggle()" class="pointer">
+                Sign in here
+              </b>
+            </p>
+          </div>
+        </div>
+      
+      </div>
+      <!-- END SIGN UP -->
+      <!-- SIGN IN -->
+        <div class="col align-items-center flex-col sign-in">
+          <div class="form-wrapper align-items-center">
+            <div class="form sign-in">
+              <div class="input-group">
+                <i class='bx bxs-user'></i>
+<!--                <form class="login_form" action="/login" method="post">-->
+                <input name="id" id="id" type="text" placeholder="이메일 주소">
+              </div>
+              <div class="input-group">
+                <i class='bx bxs-lock-alt'></i>
+                <input name="pwd" id="pwd" type="password" placeholder="비밀번호">
+              </div>
+              <button id="submit_btn_ajax" type="submit">
+                로그인
+              </button>
+<!--              </form>-->
+            <p>
+              <b>
+                비밀번호를 잊으셨나요?
+              </b>
+            </p>
+            <p>
+              <span>
+                아직 계정이 없으신가요?
+              </span>
+              <b onclick="toggle()" class="pointer">
+                Sign up here
+              </b>
+              <div onclick="" class="kakao_login_wrapper">
+                <img th:src="@{/images/kakao_login_medium_wide.png}" width="416" alt="">
+            </div>
+            </p>
+          </div>
+        </div>
+
+        <div class="form-wrapper">
+        </div>
+      </div>
+
+      <!-- END SIGN IN -->
+    </div>
+    <!-- END FORM SECTION -->
+    <!-- CONTENT SECTION -->
+    <div class="row content-row">
+      <!-- SIGN IN CONTENT -->
+      <div class="col align-items-center flex-col">
+        <div class="text sign-in">
+            <h2>
+                Udong.Indie
+              </h2>
+          <h2>
+            Welcome
+          </h2>
+  
+        </div>
+        <div class="img sign-in">
+    
+        </div>
+      </div>
+      <!-- END SIGN IN CONTENT -->
+      <!-- SIGN UP CONTENT -->
+      <div class="col align-items-center flex-col">
+        <div class="img sign-up">
+        
+        </div>
+        <div class="text sign-up">
+          <h2>
+            Join with us
+          </h2>
+  
+        </div>
+      </div>
+      <!-- END SIGN UP CONTENT -->
+    </div>
+    <!-- END CONTENT SECTION -->
+  </div>
+  <script>
+    let container = document.getElementById('container')
+
+    toggle = () => {
+    container.classList.toggle('sign-in')
+    container.classList.toggle('sign-up')
+    }
+
+    setTimeout(() => {
+    container.classList.add('sign-in')
+    }, 200)
+
+    <!-------------------------------- ajax 로그인 --------------------------------------->
+    $('#submit_btn_ajax').click(function() {
+
+          var uid = $('#id').val();
+          var upwd = $('#pwd').val();
+
+          $.ajax({
+
+              type : "POST",
+              url : "/login",
+              data : {
+                  id:uid,
+                  pwd:upwd
+              },
+              dataType : "text",
+              success : function(data) {
+                if (data == 'fail') {
+                    alert('아이디 또는 비밀번호를 확인하세요.')
+                } else {
+                    window.location.href = '/';
+                }
+              },
+          })
+    });
+
+    <!-------------------------------- ajax 회원가입 --------------------------------------->
+    $('#join_btn_ajax').click(function() {
+
+          var username = $('#join_username').val();
+          var email = $('#join_email').val();
+          var pwd = $('#join_pwd1').val();
+          var pwd2 = $('#join_pwd2').val();
+
+          $.ajax({
+
+              type : "POST",
+              url : "/join",
+              data : {
+                  username:username,
+                  email:email,
+                  pwd:pwd,
+                  pwd2:pwd2
+              },
+              dataType : "text",
+              success : function(data) {
+                    alert(data)
+                    if (data == '회원가입이 완료되었습니다') {
+                      toggle()
+                    }
+              },
+          })
+    });
+  </script>

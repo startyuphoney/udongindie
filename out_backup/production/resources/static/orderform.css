@@ -1,0 +1,224 @@
+body {
+    margin: 0;
+}
+
+.body_wrapper {
+    background-color: white;
+}
+
+.first_wrapper {
+    width: 850px;
+    margin: auto;
+}
+
+.first_wrapper2 {
+    margin-left: -90px;
+}
+
+.first {
+    padding-top: 100px;
+    padding-bottom: 42px;
+    display: flex;
+    justify-content: center;
+    margin-left: 90px;
+}
+
+.first h1 {
+    margin-top: 0px;
+}
+
+.first .title_content {
+    margin-left: 40px;
+}
+
+.first .title_content .context {
+    font-size: 18px;
+    margin-top: 30px;
+}
+
+.first .title_content .detail {
+}
+
+.first .item {
+    margin-top: 20px;
+}
+
+.first .item2 {
+    margin-top: 20px;
+}
+
+.detail_value{
+    margin-left: 30px;
+}
+
+.detail_wrapper {
+    margin-top: 36px;
+    display: flex;
+    margin-left: 5px;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    width: 72%;
+    margin-left: 26%;
+    margin-top: 20px;
+    flex-direction: column;
+}
+
+#pay {
+    margin-top: 18px;
+    margin-left: 547px;
+    margin-bottom: 150px;
+}
+
+.order_count {
+    display: flex;
+    justify-content: center;
+    /* margin-top: 20px; */
+    /* padding-bottom: 160px; */
+    height: 20px;
+}
+
+/* ------------------------------ 디테일 네비게이션 ( 공연정보 ) ------------------------------------- */
+
+.item_detail_info h2 {
+    margin-bottom:15px;
+}
+
+.item_detail_text h2 {
+    margin-bottom:15px;
+}
+
+.nav_sticky_wrapper {
+    position: sticky;
+    top: -1px;
+    background-color: white;
+}
+
+.detail_nav_wrapper {
+    text-align:center;
+    width: 850px;
+    margin: auto;
+}
+
+.detail_nav_wrapper hr {
+    width: 783px;
+    margin-left : 20px;
+}
+
+.detail_nav {
+    text-align:center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 654px;
+    margin-bottom: 11px;
+    color: rgb(102, 102, 102);
+}
+
+.detail_nav .detail_item_info.active{
+    text-decoration: underline;
+    text-underline-offset : 9px;
+    text-decoration-thickness: 7px;
+    margin-left:5px;
+}
+
+.detail_nav .detail_item_info {
+    margin-left:5px;
+}
+
+.detail_nav .detail_item_sale_info.active{
+    text-decoration: underline;
+    text-underline-offset : 9px;
+    text-decoration-thickness: 7px;
+    margin-left:10px;
+}
+
+.detail_nav .detail_item_sale_info {
+    margin-left:10px;
+}
+
+
+.detail_nav .detail_item_info {
+    color: black;
+}
+
+.detail_nav span {
+    cursor: pointer;
+}
+
+.item_detail_info {
+    text-align: left;
+    margin-left: 50px;
+    margin-top: 60px;
+    display: none;
+}
+
+.item_detail_info.show {
+    text-align: left;
+    margin-left: 50px;
+    margin-top: 60px;
+    display: block;
+}
+
+.item_detail_info h2{
+    text-align: left;
+}
+
+.item_detail_info p{
+    margin-right: 300px;
+    margin-bottom: 50px;
+}
+
+.item_detail_text {
+    margin-right: 530px;
+}
+
+.detail_nav li{
+    margin-right: 20px;
+}
+
+.detail_nav .detail_item {
+}
+
+/* ------------------------------ 디테일 네비게이션 ( 판매자 정보 ) ------------------------------------- */
+
+.item_sale_info {
+    text-align: left;
+    margin-left: 50px;
+    display: none;
+}
+
+.item_sale_info.show {
+    text-align: left;
+    margin-left: 50px;
+    display: block;
+}
+
+.item_sale_info th {
+    width: 150px;
+    height: 50px;
+    background-color: rgb(244, 246, 249);
+}
+
+.item_sale_info table, th, td {
+    border-top: 1px solid rgb(220, 220, 220);
+    border-bottom: 1px solid rgb(220, 220, 220);
+    border-collapse: collapse;
+    color: rgb(102, 102, 102);
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.item_sale_info table {
+    margin-bottom: 100px;
+}
+
+.item_sale_info th, td {
+    padding-left: 18px;
+}
+
+.company_info_wrapper {
+    margin-bottom: 70px;
+    margin-top: 50px;
+}
